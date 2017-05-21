@@ -12,7 +12,7 @@ import piexif
 from piexif import _common, ImageIFD, ExifIFD, GPSIFD, TAGS, InvalidImageDataError
 
 
-print("piexif version: {0}".format(piexif.VERSION))
+print(("piexif version: {0}".format(piexif.VERSION)))
 
 
 INPUT_FILE1 = os.path.join("tests", "images", "01.jpg")
@@ -102,7 +102,7 @@ class ExifTests(unittest.TestCase):
         for input_file in files:
             exif = piexif.load(input_file)
             e = load_exif_by_PIL(input_file)
-            print("********************\n" + input_file + "\n")
+            print(("********************\n" + input_file + "\n"))
             self._compare_piexifDict_PILDict(exif, e, p=False)
 
     def test_load_m(self):
@@ -110,7 +110,7 @@ class ExifTests(unittest.TestCase):
         """
         exif = piexif.load(I1)
         e = load_exif_by_PIL(INPUT_FILE1)
-        print("********************\n\n" + INPUT_FILE1 + "\n")
+        print(("********************\n\n" + INPUT_FILE1 + "\n"))
         self._compare_piexifDict_PILDict(exif, e)
 
     def test_load_tif(self):
@@ -200,7 +200,7 @@ class ExifTests(unittest.TestCase):
         t = time.time()
         exif_bytes = piexif.dump(exif_dict)
         t_cost = time.time() - t
-        print("'dump': {0}[sec]".format(t_cost))
+        print(("'dump': {0}[sec]".format(t_cost)))
         im = Image.new("RGBA", (8, 8))
 
         o = io.BytesIO()
@@ -361,10 +361,10 @@ class ExifTests(unittest.TestCase):
                 if not (b"\xe0" <= thumbnail[3:4] <= b"\xef"):
                     self.assertEqual(t, thumbnail)
                 else:
-                    print("Given JPEG doesn't follow exif thumbnail standard. "
+                    print(("Given JPEG doesn't follow exif thumbnail standard. "
                             "APPn segments in thumbnail should be removed, "
                             "whereas thumbnail JPEG has it. \n: " +
-                            input_file)
+                            input_file))
                 exif["1st"].pop(513)
                 e["1st"].pop(513)
                 exif["1st"].pop(514)
@@ -515,15 +515,15 @@ class ExifTests(unittest.TestCase):
         t = time.time()
         exif = piexif.load(INPUT_FILE_PEN)
         t_cost = time.time() - t
-        print("'load': {0}[sec]".format(t_cost))
+        print(("'load': {0}[sec]".format(t_cost)))
         for ifd in ("0th", "Exif", "GPS", "Interop", "1st"):
-            print("\n{0} IFD:".format(ifd))
+            print(("\n{0} IFD:".format(ifd)))
             d = exif[ifd]
             for key in sorted(d):
                 try:
-                    print("  ", key, TAGS[ifd][key]["name"], d[key][:10])
+                    print(("  ", key, TAGS[ifd][key]["name"], d[key][:10]))
                 except:
-                    print("  ", key, TAGS[ifd][key]["name"], d[key])
+                    print(("  ", key, TAGS[ifd][key]["name"], d[key]))
         print("**********************************************")
 
 # test utility methods----------------------------------------------
@@ -563,31 +563,31 @@ class ExifTests(unittest.TestCase):
                 self._compare_value(zeroth_ifd[key], pilDict[key])
                 if p:
                     try:
-                        print(TAGS["0th"][key]["name"],
-                              zeroth_ifd[key][:10], pilDict[key][:10])
+                        print((TAGS["0th"][key]["name"],
+                              zeroth_ifd[key][:10], pilDict[key][:10]))
                     except:
-                         print(TAGS["0th"][key]["name"],
-                               zeroth_ifd[key], pilDict[key])
+                         print((TAGS["0th"][key]["name"],
+                               zeroth_ifd[key], pilDict[key]))
         for key in sorted(exif_ifd):
             if key in pilDict:
                 self._compare_value(exif_ifd[key], pilDict[key])
                 if p:
                     try:
-                        print(TAGS["Exif"][key]["name"],
-                              exif_ifd[key][:10], pilDict[key][:10])
+                        print((TAGS["Exif"][key]["name"],
+                              exif_ifd[key][:10], pilDict[key][:10]))
                     except:
-                         print(TAGS["Exif"][key]["name"],
-                               exif_ifd[key], pilDict[key])
+                         print((TAGS["Exif"][key]["name"],
+                               exif_ifd[key], pilDict[key]))
         for key in sorted(gps_ifd):
             if key in gps:
                 self._compare_value(gps_ifd[key], gps[key])
                 if p:
                     try:
-                        print(TAGS["GPS"][key]["name"],
-                              gps_ifd[key][:10], gps[key][:10])
+                        print((TAGS["GPS"][key]["name"],
+                              gps_ifd[key][:10], gps[key][:10]))
                     except:
-                         print(TAGS["GPS"][key]["name"],
-                               gps_ifd[key], gps[key])
+                         print((TAGS["GPS"][key]["name"],
+                               gps_ifd[key], gps[key]))
 
 
 class UTests(unittest.TestCase):

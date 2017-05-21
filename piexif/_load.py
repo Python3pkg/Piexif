@@ -223,11 +223,11 @@ class _ExifReader(object):
 
 def _get_key_name_dict(exif_dict):
     new_dict = {
-        "0th":{TAGS["Image"][n]["name"]:value for n, value in exif_dict["0th"].items()},
-        "Exif":{TAGS["Exif"][n]["name"]:value for n, value in exif_dict["Exif"].items()},
-        "1st":{TAGS["Image"][n]["name"]:value for n, value in exif_dict["1st"].items()},
-        "GPS":{TAGS["GPS"][n]["name"]:value for n, value in exif_dict["GPS"].items()},
-        "Interop":{TAGS["Interop"][n]["name"]:value for n, value in exif_dict["Interop"].items()},
+        "0th":{TAGS["Image"][n]["name"]:value for n, value in list(exif_dict["0th"].items())},
+        "Exif":{TAGS["Exif"][n]["name"]:value for n, value in list(exif_dict["Exif"].items())},
+        "1st":{TAGS["Image"][n]["name"]:value for n, value in list(exif_dict["1st"].items())},
+        "GPS":{TAGS["GPS"][n]["name"]:value for n, value in list(exif_dict["GPS"].items())},
+        "Interop":{TAGS["Interop"][n]["name"]:value for n, value in list(exif_dict["Interop"].items())},
         "thumbnail":exif_dict["thumbnail"],
     }
     return new_dict

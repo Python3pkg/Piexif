@@ -11,12 +11,12 @@ def load_sample(input_file):
         with open("foo.jpg", "wb+") as f:
             f.write(thumbnail)
     for ifd_name in exif:
-        print("\n{0} IFD:".format(ifd_name))
+        print(("\n{0} IFD:".format(ifd_name)))
         for key in exif[ifd_name]:
             try:
-                print(key, exif[ifd_name][key][:10])
+                print((key, exif[ifd_name][key][:10]))
             except:
-                print(key, exif[ifd_name][key])
+                print((key, exif[ifd_name][key]))
 
 
 def dump_sample(input_file, output_file):
